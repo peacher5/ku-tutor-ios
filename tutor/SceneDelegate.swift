@@ -8,24 +8,46 @@
 
 import UIKit
 import SwiftUI
+import Firebase
+import GoogleSignIn
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
+class SceneDelegate: UIResponder, UIWindowSceneDelegate, GIDSignInDelegate {
     var window: UIWindow?
+    var authStore = AuthStore()
 
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            print("Google SignIn Error: ", error)
+            return
+        }
+
+//        print("+++++++++++++++")
+//        print(credential)
+        print(user.authentication.idToken!)
+//        print(user.profile.name!)
+        print(user.profile.email!)
+//        print("+++++++++++++++")
+        authStore.user = user
+    }
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
-        // Create the SwiftUI view that provides the window contents.
-        let contentView = ContentView()
+        guard let googleSignIn = GIDSignIn.sharedInstance() else { return }
+
+        googleSignIn.clientID = FirebaseApp.app()?.options.clientID
+        googleSignIn.delegate = self
+
+        if (googleSignIn.hasPreviousSignIn()) {
+            googleSignIn.restorePreviousSignIn()
+        }
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: contentView)
+            window.rootViewController = UIHostingController(rootView: ContentView().environmentObject(authStore))
             self.window = window
             window.makeKeyAndVisible()
         }
