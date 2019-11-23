@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1011580347750-c8lobdid5g73gujjpm00jgj2gm5u9sb3.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1011580347750-c8lobdid5g73gujjpm00jgj2gm5u9sb3</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD4M4L9qBAdjJj2EJm97D-BSDOofqf0e_k</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1011580347750</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>th.ku.tutor</string>
+	<key>PROJECT_ID</key>
+	<string>ku-tutor</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ku-tutor.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1011580347750:ios:6b66a2c3e1fbe11825d4a7</string>
+	<key>DATABASE_URL</key>
+	<string>https://ku-tutor.firebaseio.com</string>
+</dict>
+</plist>
