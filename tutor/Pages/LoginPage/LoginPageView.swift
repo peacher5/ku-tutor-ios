@@ -14,7 +14,7 @@ struct LoginPageView: View {
     struct LoginButtonStyle: ButtonStyle {
         func makeBody(configuration: Self.Configuration) -> some View {
             configuration.label
-                .frame(minWidth: 0, maxWidth: .infinity)
+                .frame(width: 340)
                 .padding(.vertical, 16)
                 .foregroundColor(.white)
                 .background(configuration.isPressed ? Color.red : Color.green)
@@ -26,7 +26,7 @@ struct LoginPageView: View {
         VStack {
             Spacer()
             Button(action: signIn, label: { Text("เข้าสู่ระบบด้วยบัญชี KU Google").bold() }).buttonStyle(LoginButtonStyle())
-        }.padding()
+        }.padding(.bottom, 30)
     }
 
     private func signIn() {

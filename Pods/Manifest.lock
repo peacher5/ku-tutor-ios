@@ -86,6 +86,7 @@ PODS:
   - GTMSessionFetcher/Core (1.2.2)
   - GTMSessionFetcher/Full (1.2.2):
     - GTMSessionFetcher/Core (= 1.2.2)
+  - KeychainSwift (18.0.0)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
@@ -96,6 +97,7 @@ DEPENDENCIES:
   - Firebase/Analytics
   - Firebase/Auth
   - GoogleSignIn
+  - KeychainSwift
 
 SPEC REPOS:
   trunk:
@@ -115,6 +117,7 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMAppAuth
     - GTMSessionFetcher
+    - KeychainSwift
     - nanopb
 
 SPEC CHECKSUMS:
@@ -134,8 +137,9 @@ SPEC CHECKSUMS:
   GoogleUtilities: f895fde57977df4e0233edda0dbeac490e3703b6
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
+  KeychainSwift: c46e1438d121e47459fb304ac88c5e058a2a91ed
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
 
-PODFILE CHECKSUM: 876dd745147ea8e2e1b67c794a33bdd6b964d659
+PODFILE CHECKSUM: f7c3a46ca0e475fcc1a77d7f80d6f5da894c98a7
 
 COCOAPODS: 1.8.3

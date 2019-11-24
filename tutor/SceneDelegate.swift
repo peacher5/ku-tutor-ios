@@ -13,7 +13,7 @@ import GoogleSignIn
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate, GIDSignInDelegate {
     var window: UIWindow?
-    var authStore = AuthStore()
+    var rootStore = RootStore()
 
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
@@ -23,11 +23,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, GIDSignInDelegate {
 
 //        print("+++++++++++++++")
 //        print(credential)
-        print(user.authentication.idToken!)
+//        print(user.authentication.idToken!)
 //        print(user.profile.name!)
         print(user.profile.email!)
 //        print("+++++++++++++++")
-        authStore.user = user
+
+        rootStore.signInStatus = .SignedIn
     }
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -42,12 +43,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, GIDSignInDelegate {
 
         if (googleSignIn.hasPreviousSignIn()) {
             googleSignIn.restorePreviousSignIn()
+        } else {
+            rootStore.signInStatus = .NotSignedIn
         }
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: ContentView().environmentObject(authStore))
+            window.rootViewController = UIHostingController(rootView: ContentView().environmentObject(rootStore))
             self.window = window
             window.makeKeyAndVisible()
         }

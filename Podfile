@@ -9,5 +9,6 @@ target 'tutor' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
   pod 'GoogleSignIn'
+  pod 'KeychainSwift'
 
 end
