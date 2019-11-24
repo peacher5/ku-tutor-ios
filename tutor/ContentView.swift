@@ -33,7 +33,7 @@ struct ContentView: View {
             case .Loading:
                 return AnyView(Text("Loading..."))
             case .NotRegistered:
-                return AnyView(ProfileRegisterPageView())
+                return AnyView(ProfileRegisterPageView().environmentObject(ProfileRegisterStore(rootStore: self.store)))
             case .Registered:
                 return AnyView(MainPageView())
             }

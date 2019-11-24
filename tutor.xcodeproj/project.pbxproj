@@ -10,6 +10,8 @@
 		6213DBBB2355B22A001F804D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6213DBBA2355B22A001F804D /* GoogleService-Info.plist */; };
 		622E8F57238A9FE200169778 /* ProfileRegisterPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622E8F56238A9FE200169778 /* ProfileRegisterPageView.swift */; };
 		6266FB1F23608B4E007C0BC6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6266FB1E23608B4E007C0BC6 /* ContentView.swift */; };
+		62701F70238ADE40009857B5 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62701F6F238ADE40009857B5 /* ColorExtension.swift */; };
+		62701F72238AF145009857B5 /* ProfileRegisterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62701F71238AF145009857B5 /* ProfileRegisterStore.swift */; };
 		627BFCC2235F0092002CB2D0 /* MainPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BFCC1235F0092002CB2D0 /* MainPageView.swift */; };
 		62C0E7A62355AEB5008DDA67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C0E7A52355AEB5008DDA67 /* AppDelegate.swift */; };
 		62C0E7A82355AEB5008DDA67 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C0E7A72355AEB5008DDA67 /* SceneDelegate.swift */; };
@@ -28,6 +30,8 @@
 		6213DBBA2355B22A001F804D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		622E8F56238A9FE200169778 /* ProfileRegisterPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRegisterPageView.swift; sourceTree = "<group>"; };
 		6266FB1E23608B4E007C0BC6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		62701F6F238ADE40009857B5 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		62701F71238AF145009857B5 /* ProfileRegisterStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRegisterStore.swift; sourceTree = "<group>"; };
 		627BFCC1235F0092002CB2D0 /* MainPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageView.swift; sourceTree = "<group>"; };
 		62C0E7A22355AEB5008DDA67 /* tutor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tutor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62C0E7A52355AEB5008DDA67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -142,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				62D6A441238A531B00B28170 /* ApiUtil.swift */,
+				62701F6F238ADE40009857B5 /* ColorExtension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -150,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				62EF335323896E5F0085BAD8 /* RootStore.swift */,
+				62701F71238AF145009857B5 /* ProfileRegisterStore.swift */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -313,6 +319,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62701F72238AF145009857B5 /* ProfileRegisterStore.swift in Sources */,
 				62C0E7A62355AEB5008DDA67 /* AppDelegate.swift in Sources */,
 				6266FB1F23608B4E007C0BC6 /* ContentView.swift in Sources */,
 				62D6A442238A531B00B28170 /* ApiUtil.swift in Sources */,
@@ -322,6 +329,7 @@
 				62C0E7AA2355AEB5008DDA67 /* LoginPageView.swift in Sources */,
 				62EF33592389A7C70085BAD8 /* User.swift in Sources */,
 				627BFCC2235F0092002CB2D0 /* MainPageView.swift in Sources */,
+				62701F70238ADE40009857B5 /* ColorExtension.swift in Sources */,
 				62EF335123896AC70085BAD8 /* TutorApi.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

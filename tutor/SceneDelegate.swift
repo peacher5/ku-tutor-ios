@@ -41,6 +41,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, GIDSignInDelegate {
         googleSignIn.clientID = FirebaseApp.app()?.options.clientID
         googleSignIn.delegate = self
 
+        print("hasPreviousSignIn")
         if (googleSignIn.hasPreviousSignIn()) {
             googleSignIn.restorePreviousSignIn()
         } else {

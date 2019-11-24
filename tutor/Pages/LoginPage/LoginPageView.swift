@@ -17,7 +17,7 @@ struct LoginPageView: View {
                 .frame(width: 340)
                 .padding(.vertical, 16)
                 .foregroundColor(.white)
-                .background(configuration.isPressed ? Color.red : Color.green)
+                .background(configuration.isPressed ? Color(hex: "#35a136") : Color.green)
                 .cornerRadius(100)
         }
     }

@@ -59,7 +59,7 @@ class ApiUtil {
         }.resume()
     }
 
-    static func postJSON<T: Decodable>(url: String, headers: [String: String], jsonBody: [String: Any]?, type: T.Type, callback: ResponseCallback<T>) {
+    static func postJSON(url: String, headers: [String: String], jsonBody: [String: Any]?, callback: ResponseCallback<Void>) {
         guard let url = URL(string: url) else { return }
 
         var request = URLRequest(url: url)
@@ -70,35 +70,23 @@ class ApiUtil {
             request.httpBody = jsonData
         }
 
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
         headers.forEach { key, value in
-            request.addValue(key, forHTTPHeaderField: value)
+            request.addValue(value, forHTTPHeaderField: key)
         }
 
         URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if error != nil {
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                if error != nil {
                     callback.onError("Fetch Error: " + error!.localizedDescription)
+                    return
                 }
-            }
 
-            guard let data = data else { return }
-
-            if let httpResponse = response as? HTTPURLResponse {
-                if (httpResponse.statusCode == 200) {
-                    do {
-                        let jsonData = try JSONDecoder().decode(type, from: data)
-
-                        DispatchQueue.main.async {
-                            callback.onSuccess(jsonData)
-                        }
-
-                    } catch let jsonError {
-                        DispatchQueue.main.async {
-                            callback.onError("JSON Parse Error: " + jsonError.localizedDescription)
-                        }
-                    }
-                } else {
-                    DispatchQueue.main.async {
+                if let httpResponse = response as? HTTPURLResponse {
+                    if (httpResponse.statusCode == 200) {
+                        callback.onSuccess(Void())
+                    } else {
                         callback.onFailure(httpResponse.statusCode)
                     }
                 }

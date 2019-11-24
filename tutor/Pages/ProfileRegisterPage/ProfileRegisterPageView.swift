@@ -9,14 +9,7 @@
 import SwiftUI
 
 struct ProfileRegisterPageView: View {
-    @State var firstName = ""
-    @State var lastName = ""
-    @State var nickname = ""
-    @State var studentId = ""
-    @State var campus = ""
-    @State var faculty = ""
-    @State var department = ""
-    @State var aboutMe = ""
+    @EnvironmentObject var store: ProfileRegisterStore
 
     struct FormTextFieldStyle: TextFieldStyle {
         func _body(configuration: TextField<Self._Label>) -> some View {
@@ -33,59 +26,71 @@ struct ProfileRegisterPageView: View {
                 .padding(.horizontal, 40)
                 .padding(.vertical, 12)
                 .foregroundColor(.white)
-                .background(configuration.isPressed ? Color.red : Color.green)
+                .background(configuration.isPressed ? Color(hex: "#35a136") : Color.green)
                 .cornerRadius(100)
         }
     }
 
     var body: some View {
         ScrollView {
-            VStack {
-                Text("Register Profile").font(.largeTitle).bold().padding(30)
+            VStack (alignment: .leading) {
+                Text("Register Your Profile").font(.title).bold().padding().padding(.vertical, 20)
 
                 VStack (alignment: .leading, spacing: 6) {
                     Group {
                         Text("First name").font(.headline)
-                        TextField("", text: $firstName).textFieldStyle(FormTextFieldStyle())
+                        TextField("", text: $store.firstName).textFieldStyle(FormTextFieldStyle())
 
                         Text("Last name").font(.headline).padding(.top, 10)
-                        TextField("", text: $lastName).textFieldStyle(FormTextFieldStyle())
+                        TextField("", text: $store.lastName).textFieldStyle(FormTextFieldStyle())
 
                         Text("Nickname").font(.headline).padding(.top, 10)
-                        TextField("", text: $nickname).textFieldStyle(FormTextFieldStyle())
+                        TextField("", text: $store.nickname).textFieldStyle(FormTextFieldStyle())
                     }
 
                     Text("KU Info")
                         .font(.title)
-                        .bold()
                         .padding(.vertical)
-                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
 
                     Group {
                         Text("Student ID").font(.headline)
-                        TextField("", text: $studentId).textFieldStyle(FormTextFieldStyle())
+                        TextField("", text: $store.studentId).textFieldStyle(FormTextFieldStyle())
 
                         Text("Campus").font(.headline).padding(.top, 10)
-                        TextField("", text: $campus).textFieldStyle(FormTextFieldStyle())
+
+                        Picker(selection: $store.campus, label:
+                                Text("Campus")
+                            , content: {
+                                Text("BKN").tag("BKN")
+                                Text("KPS").tag("KPS")
+                                Text("SRC").tag("SRC")
+                                Text("CSC").tag("CSC")
+                            }).pickerStyle(SegmentedPickerStyle()).frame(width: 378, height: 54, alignment: .center)
 
                         Text("Faculty").font(.headline).padding(.top, 10)
-                        TextField("", text: $faculty).textFieldStyle(FormTextFieldStyle())
+                        TextField("", text: $store.faculty).textFieldStyle(FormTextFieldStyle())
 
                         Text("Department").font(.headline).padding(.top, 10)
-                        TextField("", text: $department).textFieldStyle(FormTextFieldStyle())
-
-                        Text("About Me").font(.headline).padding(.top, 10)
-                        TextField("", text: $aboutMe).textFieldStyle(FormTextFieldStyle())
+                        TextField("", text: $store.department).textFieldStyle(FormTextFieldStyle())
                     }
 
+                    Text("Your Info")
+                        .font(.title)
+                        .padding(.vertical)
+
+                    Text("About Me").font(.headline)
+                    TextField("", text: $store.aboutMe).textFieldStyle(FormTextFieldStyle())
+
                     VStack {
-                        Button(action: { }, label: { Text("Register").bold() }).buttonStyle(RegisterButtonStyle())
-                        }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center).padding(.vertical, 20)
+                        Button(action: store.onRegisterButtonClick, label: { Text("Register").bold() }).buttonStyle(RegisterButtonStyle())
+                    }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center).padding(.vertical, 30)
 
                 }.padding(.horizontal, 18)
 
                 Spacer()
-            }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+            }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading).alert(isPresented: $store.showAlert) {
+                Alert(title: Text(store.errorMessage!), dismissButton: Alert.Button.default(Text("OK")))
+            }
         }
     }
 }

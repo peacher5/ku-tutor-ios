@@ -52,11 +52,11 @@ class RootStore: ObservableObject {
                             } else if statusCode == 400 {
                                 self.profileRegisterStatus = .NotRegistered
                             } else {
-                                self.errorMessage = "[Profile] \(statusCode)"
+                                self.errorMessage = "[fetchProfile] \(statusCode)"
                             }
                         },
                         onError: { errorMessage in
-                            self.errorMessage = "[Profile] \(errorMessage)"
+                            self.errorMessage = "[fetchProfile] \(errorMessage)"
                         }))
                 } else {
                     getOrFetchToken()
@@ -98,10 +98,10 @@ class RootStore: ObservableObject {
                     self.signInStatus = .SignedIn
                 },
                 onFailure: { statusCode in
-                    self.errorMessage = "[Auth] \(statusCode)"
+                    self.errorMessage = "[auth] \(statusCode)"
                 },
                 onError: { errorMessage in
-                    self.errorMessage = "[Auth] \(errorMessage)"
+                    self.errorMessage = "[auth] \(errorMessage)"
                 }))
         }
     }
