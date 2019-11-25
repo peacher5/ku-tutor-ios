@@ -12,4 +12,6 @@ struct Post: Codable, Identifiable {
     var id: String
     var title: String
     var description: String
+    var content: String
+    var coverPictureUrl: String
 }

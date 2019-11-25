@@ -17,7 +17,7 @@ struct MainPageView: View {
             VStack {
                 Spacer()
                 BlurView(style: .extraLight)
-                    .frame(maxWidth: .infinity, maxHeight: 94).shadow(color: Color.black.opacity(0.2), radius: 12, x: 0, y: 0)
+                    .frame(maxWidth: .infinity, maxHeight: 94).shadow(color: Color.black.opacity(0.1), radius: 12, x: 0, y: 0)
             }
 
             VStack {

@@ -20,12 +20,14 @@ struct FeedItemView: View {
             Text(title)
                 .padding([.top, .horizontal])
                 .font(.headline)
+                .lineLimit(2)
 
             Text(description)
                 .padding([.bottom, .horizontal])
                 .padding(.top, 10)
                 .font(.subheadline)
                 .foregroundColor(Color.black.opacity(0.64))
+                .lineLimit(2)
         }
             .background(Color.white)
             .cornerRadius(6)
