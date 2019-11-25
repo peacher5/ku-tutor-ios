@@ -23,6 +23,7 @@ class RootStore: ObservableObject {
     var keychain = KeychainSwift()
     var token: String?
     var profile: User?
+    var rootViewController: HostingController?
 
     var errorMessage: String? {
         didSet {

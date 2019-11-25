@@ -51,7 +51,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, GIDSignInDelegate {
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: ContentView().environmentObject(rootStore))
+            let hostingController = HostingController(rootView: AnyView(ContentView().environmentObject(rootStore)))
+            window.rootViewController = hostingController
+            self.rootStore.rootViewController = hostingController
             self.window = window
             window.makeKeyAndVisible()
         }

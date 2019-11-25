@@ -35,6 +35,7 @@ struct ContentView: View {
             case .NotRegistered:
                 return AnyView(ProfileRegisterPageView().environmentObject(ProfileRegisterStore(rootStore: self.store)))
             case .Registered:
+                self.store.rootViewController?.isDarkAppBar = true
                 return AnyView(MainPageView())
             }
         }
