@@ -8,28 +8,28 @@
 
 import SwiftUI
 
+struct FormTextFieldStyle: TextFieldStyle {
+    func _body(configuration: TextField<Self._Label>) -> some View {
+        configuration
+            .padding()
+            .background(Color(hex: "#e1e9eb"))
+            .cornerRadius(5)
+    }
+}
+
+struct PrimaryButtonStyle: ButtonStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .padding(.horizontal, 40)
+            .padding(.vertical, 12)
+            .foregroundColor(.white)
+            .background(configuration.isPressed ? Color(hex: "#35a136") : Color.green)
+            .cornerRadius(100)
+    }
+}
+
 struct ProfileRegisterPageView: View {
     @EnvironmentObject var store: ProfileRegisterStore
-
-    struct FormTextFieldStyle: TextFieldStyle {
-        func _body(configuration: TextField<Self._Label>) -> some View {
-            configuration
-                .padding()
-                .background(Color(red: 239.0 / 255.0, green: 243.0 / 255.0, blue: 244.0 / 255.0, opacity: 1.0))
-                .cornerRadius(5)
-        }
-    }
-
-    struct RegisterButtonStyle: ButtonStyle {
-        func makeBody(configuration: Self.Configuration) -> some View {
-            configuration.label
-                .padding(.horizontal, 40)
-                .padding(.vertical, 12)
-                .foregroundColor(.white)
-                .background(configuration.isPressed ? Color(hex: "#35a136") : Color.green)
-                .cornerRadius(100)
-        }
-    }
 
     var body: some View {
         ScrollView {
@@ -82,7 +82,7 @@ struct ProfileRegisterPageView: View {
                     TextField("", text: $store.aboutMe).textFieldStyle(FormTextFieldStyle())
 
                     VStack {
-                        Button(action: store.onRegisterButtonClick, label: { Text("Register").bold() }).buttonStyle(RegisterButtonStyle())
+                        Button(action: store.onRegisterButtonClick, label: { Text("Register").bold() }).buttonStyle(PrimaryButtonStyle())
                     }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center).padding(.vertical, 30)
 
                 }.padding(.horizontal, 18)

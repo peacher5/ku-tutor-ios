@@ -43,6 +43,7 @@ class RootStore: ObservableObject {
                 if let token = token {
                     TutorApi.fetchProfile(token: token, callback: ResponseCallback(
                         onSuccess: { user in
+                            print(user)
                             self.profile = user
                             self.profileRegisterStatus = .Registered
                         },

@@ -7,18 +7,24 @@
 //
 
 import SwiftUI
+import URLImage
+import Kingfisher
 
-struct FeedItemView: View {
+struct FeedItemView: SwiftUI.View {
     var title: String
     var description: String
 
-    var body: some View {
+    var body: some SwiftUI.View {
         VStack (alignment: .leading) {
-            Spacer().frame(maxWidth: .infinity, minHeight: 120, maxHeight: 120)
-                .background(Color.black.opacity(0.1))
 
+            KFImage(URL(string: "https://picsum.photos/440/200")!)
+                .resizable()
+                .background(Color.black.opacity(0.05))
+                .frame(maxWidth: .infinity, minHeight: 120.0, maxHeight: 120)
+            
             Text(title)
-                .padding([.top, .horizontal])
+                .padding(.horizontal)
+                .padding(.top, 4)
                 .font(.headline)
                 .lineLimit(2)
 
@@ -32,12 +38,16 @@ struct FeedItemView: View {
             .background(Color.white)
             .cornerRadius(6)
             .padding([.top, .horizontal])
-            .shadow(color: Color.black.opacity(0.1), radius: 4, y: 2)
+            .shadow(color: Color.black.opacity(0.3), radius: 3, y: 2)
+            .onTapGesture {
+                print("Tap")
+        }
     }
 }
 
 struct FeedItemView_Previews: PreviewProvider {
-    static var previews: some View {
+    static var previews: some SwiftUI.View {
         FeedItemView(title: "ติว Python By P'Tui", description: "ไม่มีคำอธิบาย")
+    
     }
 }

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,9 @@
 		62701F70238ADE40009857B5 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62701F6F238ADE40009857B5 /* ColorExtension.swift */; };
 		62701F72238AF145009857B5 /* ProfileRegisterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62701F71238AF145009857B5 /* ProfileRegisterStore.swift */; };
 		627BFCC2235F0092002CB2D0 /* MainPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BFCC1235F0092002CB2D0 /* MainPageView.swift */; };
+		627C1602238CE5BE00BC1FA5 /* CreatePostPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627C1601238CE5BE00BC1FA5 /* CreatePostPageView.swift */; };
+		62B84C37238C00E800F92A88 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 62B84C36238C00E800F92A88 /* URLImage */; };
+		62B84C5D238C15E900F92A88 /* ProfileTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B84C5C238C15E800F92A88 /* ProfileTabView.swift */; };
 		62C0E7A62355AEB5008DDA67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C0E7A52355AEB5008DDA67 /* AppDelegate.swift */; };
 		62C0E7A82355AEB5008DDA67 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C0E7A72355AEB5008DDA67 /* SceneDelegate.swift */; };
 		62C0E7AA2355AEB5008DDA67 /* LoginPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C0E7A92355AEB5008DDA67 /* LoginPageView.swift */; };
@@ -39,6 +42,8 @@
 		62701F6F238ADE40009857B5 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		62701F71238AF145009857B5 /* ProfileRegisterStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRegisterStore.swift; sourceTree = "<group>"; };
 		627BFCC1235F0092002CB2D0 /* MainPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageView.swift; sourceTree = "<group>"; };
+		627C1601238CE5BE00BC1FA5 /* CreatePostPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostPageView.swift; sourceTree = "<group>"; };
+		62B84C5C238C15E800F92A88 /* ProfileTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabView.swift; sourceTree = "<group>"; };
 		62C0E7A22355AEB5008DDA67 /* tutor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tutor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62C0E7A52355AEB5008DDA67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		62C0E7A72355AEB5008DDA67 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62B84C37238C00E800F92A88 /* URLImage in Frameworks */,
 				A7EBFDB45CD46AAA9DD349B7 /* Pods_tutor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,6 +91,7 @@
 		6249DCBD238A33E400057432 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				627C1600238CE5A400BC1FA5 /* CreatePostPage */,
 				622E8F55238A9FC700169778 /* ProfileRegisterPage */,
 				6249DCBF238A341D00057432 /* MainPage */,
 				6249DCBE238A341400057432 /* LoginPage */,
@@ -103,11 +110,28 @@
 		6249DCBF238A341D00057432 /* MainPage */ = {
 			isa = PBXGroup;
 			children = (
+				62B84C5B238C15CF00F92A88 /* ProfileTab */,
 				62CCE5B3238B831B00FF9DF8 /* FeedTab */,
 				627BFCC1235F0092002CB2D0 /* MainPageView.swift */,
 				62DF1080238B8EB500E9DAAA /* BlurView.swift */,
 			);
 			path = MainPage;
+			sourceTree = "<group>";
+		};
+		627C1600238CE5A400BC1FA5 /* CreatePostPage */ = {
+			isa = PBXGroup;
+			children = (
+				627C1601238CE5BE00BC1FA5 /* CreatePostPageView.swift */,
+			);
+			path = CreatePostPage;
+			sourceTree = "<group>";
+		};
+		62B84C5B238C15CF00F92A88 /* ProfileTab */ = {
+			isa = PBXGroup;
+			children = (
+				62B84C5C238C15E800F92A88 /* ProfileTabView.swift */,
+			);
+			path = ProfileTab;
 			sourceTree = "<group>";
 		};
 		62C0E7992355AEB5008DDA67 = {
@@ -230,6 +254,9 @@
 			dependencies = (
 			);
 			name = tutor;
+			packageProductDependencies = (
+				62B84C36238C00E800F92A88 /* URLImage */,
+			);
 			productName = tutor;
 			productReference = 62C0E7A22355AEB5008DDA67 /* tutor.app */;
 			productType = "com.apple.product-type.application";
@@ -258,6 +285,9 @@
 				Base,
 			);
 			mainGroup = 62C0E7992355AEB5008DDA67;
+			packageReferences = (
+				62B84C35238C00E800F92A88 /* XCRemoteSwiftPackageReference "url-image" */,
+			);
 			productRefGroup = 62C0E7A32355AEB5008DDA67 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -354,6 +384,7 @@
 				62D6A442238A531B00B28170 /* ApiUtil.swift in Sources */,
 				622E8F57238A9FE200169778 /* ProfileRegisterPageView.swift in Sources */,
 				62EF335423896E5F0085BAD8 /* RootStore.swift in Sources */,
+				627C1602238CE5BE00BC1FA5 /* CreatePostPageView.swift in Sources */,
 				62C0E7A82355AEB5008DDA67 /* SceneDelegate.swift in Sources */,
 				62C0E7AA2355AEB5008DDA67 /* LoginPageView.swift in Sources */,
 				62FB05C0238BCBD700BC40A0 /* FeedTabStore.swift in Sources */,
@@ -363,6 +394,7 @@
 				62701F70238ADE40009857B5 /* ColorExtension.swift in Sources */,
 				62EF335123896AC70085BAD8 /* TutorApi.swift in Sources */,
 				62CCE5B5238B835300FF9DF8 /* FeedTabView.swift in Sources */,
+				62B84C5D238C15E900F92A88 /* ProfileTabView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,6 +590,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		62B84C35238C00E800F92A88 /* XCRemoteSwiftPackageReference "url-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dmytro-anokhin/url-image.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.9;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		62B84C36238C00E800F92A88 /* URLImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 62B84C35238C00E800F92A88 /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 62C0E79A2355AEB5008DDA67 /* Project object */;
 }

@@ -18,4 +18,5 @@ struct User: Codable {
     var faculty: String
     var department: String
     var pictureUrl: String
+    var aboutMe: String
 }

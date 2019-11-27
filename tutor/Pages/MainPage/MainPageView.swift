@@ -8,42 +8,83 @@
 
 import SwiftUI
 
+enum Tab {
+    case Feed, Profile
+}
+
 struct MainPageView: View {
+
+    var rootStore: RootStore
+    @State var tab = Tab.Feed
+    @State var showCreatePostPage = false
 
     var body: some View {
         ZStack {
-            FeedTabView().environmentObject(FeedTabStore())
+            ZStack (alignment: .top) {
+                Spacer()
+                    .frame(maxWidth: .infinity, minHeight: 160, maxHeight: 160)
+                    .background(Color(hex: "#066664"))
+                    .edgesIgnoringSafeArea(.all)
+            }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: Alignment.topLeading)
+
+            if tab == .Feed {
+                FeedTabView(showCreatePostPage: $showCreatePostPage)
+                    .environmentObject(FeedTabStore())
+                    .transition(.opacity)
+            } else {
+                ProfileTabView(profile: rootStore.profile!)
+                    .transition(.opacity)
+            }
 
             VStack {
                 Spacer()
                 BlurView(style: .extraLight)
-                    .frame(maxWidth: .infinity, maxHeight: 94).shadow(color: Color.black.opacity(0.1), radius: 12, x: 0, y: 0)
+                    .frame(maxWidth: .infinity, maxHeight: 94).shadow(color: Color.black.opacity(0.3), radius: 12, x: 0, y: 0)
             }
 
             VStack {
                 Spacer()
                 HStack {
                     Spacer()
+
                     Text("TUTOR FEED")
                         .font(.headline)
-                        .frame(width: 120)
-                        .foregroundColor(Color(hex: "#9aa03a"))
+                        .frame(width: 120, height: 80)
+                        .foregroundColor(tab == .Feed ? Color(hex: "#9aa03a") : Color.black.opacity(0.4))
+                        .onTapGesture {
+                            withAnimation {
+                                self.tab = .Feed
+                            }
+                    }
+
                     Spacer()
                     Text("|").foregroundColor(Color.black.opacity(0.3))
                     Spacer()
+
                     Text("MY PROFILE")
                         .font(.headline)
-                        .frame(width: 120)
-                        .foregroundColor(Color.black.opacity(0.4))
+                        .frame(width: 120, height: 80)
+                        .foregroundColor(tab == .Profile ? Color(hex: "#9aa03a") : Color.black.opacity(0.4))
+                        .onTapGesture {
+                            withAnimation {
+                                self.tab = .Profile
+                            }
+                    }
+
                     Spacer()
                 }.frame(maxWidth: .infinity, maxHeight: 94).padding(.bottom, 12)
             }
+
+            if showCreatePostPage {
+                CreatePostPageView(showCreatePostPage: $showCreatePostPage)
+            }
+
         }.edgesIgnoringSafeArea(.all)
     }
 }
 
 struct MainPageView_Previews: PreviewProvider {
     static var previews: some View {
-        MainPageView()
+        MainPageView(rootStore: RootStore())
     }
 }

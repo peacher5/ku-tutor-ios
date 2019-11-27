@@ -10,5 +10,6 @@ target 'tutor' do
   pod 'Firebase/Auth'
   pod 'GoogleSignIn'
   pod 'KeychainSwift'
+  pod 'Kingfisher/SwiftUI', '~> 5.0'
 
 end
