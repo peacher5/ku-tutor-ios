@@ -19,17 +19,29 @@ enum ProfileRegisterStatus {
     case Loading, NotRegistered, Registered
 }
 
+struct Callback {
+    var run: () -> Void
+}
+
 class RootStore: ObservableObject {
     var keychain = KeychainSwift()
     var token: String?
     var profile: User?
     var rootViewController: HostingController?
 
+    var updateFeed = false
+
     var errorMessage: String? {
         didSet {
             if errorMessage != nil {
                 showAlert = true
             }
+        }
+    }
+
+    @Published var postList: [Post] = [] {
+        didSet {
+            self.updateFeed = true
         }
     }
 
@@ -44,8 +56,11 @@ class RootStore: ObservableObject {
                     TutorApi.fetchProfile(token: token, callback: ResponseCallback(
                         onSuccess: { user in
                             print(user)
-                            self.profile = user
-                            self.profileRegisterStatus = .Registered
+
+                            self.fetchPostList(callback: Callback(run: {
+                                self.profile = user
+                                self.profileRegisterStatus = .Registered
+                            }))
                         },
                         onFailure: { statusCode in
                             if statusCode == 401 {
@@ -68,6 +83,29 @@ class RootStore: ObservableObject {
     }
 
     @Published var profileRegisterStatus = ProfileRegisterStatus.Loading
+
+    func fetchPostList(callback: Callback) {
+        print("fetchPostList")
+        TutorApi.fetchPostList(token: token!, callback: ResponseCallback(
+            onSuccess: { postList in
+                print("Success fetchPostList")
+
+                var postList = postList
+
+                for (index, _) in postList.enumerated() {
+                    postList[index].last = index + 1 == postList.count
+                }
+
+                self.postList = postList
+                callback.run()
+            },
+            onFailure: { statusCode in
+                self.errorMessage = "[fetchPostList] \(statusCode)"
+            },
+            onError: { errorMessage in
+                self.errorMessage = "[fetchPostList] \(errorMessage)"
+            }))
+    }
 
     func printServerStatus() {
         TutorApi.fetchServerStatus(callback: ResponseCallback(

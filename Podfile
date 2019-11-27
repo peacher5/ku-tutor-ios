@@ -8,6 +8,7 @@ target 'tutor' do
   # Pods for tutor
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
+  pod 'Firebase/Storage'
   pod 'GoogleSignIn'
   pod 'KeychainSwift'
   pod 'Kingfisher/SwiftUI', '~> 5.0'

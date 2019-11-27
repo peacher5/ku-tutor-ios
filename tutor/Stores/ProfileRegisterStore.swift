@@ -30,7 +30,7 @@ class ProfileRegisterStore: ObservableObject {
     @Published var faculty = ""
     @Published var department = ""
     @Published var aboutMe = ""
-    
+
     var pictureUrl: String
 
     init(rootStore: RootStore) {
@@ -56,7 +56,28 @@ class ProfileRegisterStore: ObservableObject {
 
         TutorApi.createProfile(profile: profile, token: rootStore.token!, callback: ResponseCallback(
             onSuccess: { _ in
-                self.rootStore.profileRegisterStatus = .Registered
+                TutorApi.fetchProfile(token: self.rootStore.token!, callback: ResponseCallback(
+                    onSuccess: { user in
+                        print(user)
+                        self.rootStore.fetchPostList(callback: Callback(run: {
+                            self.rootStore.profile = user
+                            self.rootStore.profileRegisterStatus = .Registered
+                        }))
+                    },
+                    onFailure: { statusCode in
+                        if statusCode == 401 {
+                            self.rootStore.keychain.clear()
+                            self.rootStore.signInStatus = .Loading
+                        } else if statusCode == 400 {
+                            self.rootStore.profileRegisterStatus = .NotRegistered
+                        } else {
+                            self.rootStore.errorMessage = "[fetchProfile] \(statusCode)"
+                        }
+                    },
+                    onError: { errorMessage in
+                        self.rootStore.errorMessage = "[fetchProfile] \(errorMessage)"
+                    }))
+
             },
             onFailure: { statusCode in
                 self.errorMessage = "[createProfile] \(statusCode)"

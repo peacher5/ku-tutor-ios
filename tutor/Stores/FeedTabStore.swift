@@ -9,12 +9,9 @@
 import Foundation
 
 class FeedTabStore: ObservableObject {
-    @Published var postList: [Post]
+    var rootStore: RootStore
 
-    init() {
-        postList = [
-            Post(id: "1", title: "ติว Python By P'Tui", description: "ไม่มีคำอธิบาย", content: "c", coverPictureUrl: ""),
-            Post(id: "2", title: "ทดสอบ 2", description: "d2", content: "c2", coverPictureUrl: "")
-        ]
+    init(rootStore: RootStore) {
+        self.rootStore = rootStore
     }
 }

@@ -14,9 +14,10 @@ enum Tab {
 
 struct MainPageView: View {
 
-    var rootStore: RootStore
+    @EnvironmentObject var rootStore: RootStore
     @State var tab = Tab.Feed
     @State var showCreatePostPage = false
+    @State var selectedPost: Post?
 
     var body: some View {
         ZStack {
@@ -28,8 +29,8 @@ struct MainPageView: View {
             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: Alignment.topLeading)
 
             if tab == .Feed {
-                FeedTabView(showCreatePostPage: $showCreatePostPage)
-                    .environmentObject(FeedTabStore())
+                FeedTabView(showCreatePostPage: $showCreatePostPage, selectedPost: $selectedPost)
+                    .environmentObject(FeedTabStore(rootStore: rootStore))
                     .transition(.opacity)
             } else {
                 ProfileTabView(profile: rootStore.profile!)
@@ -76,7 +77,11 @@ struct MainPageView: View {
             }
 
             if showCreatePostPage {
-                CreatePostPageView(showCreatePostPage: $showCreatePostPage)
+                CreatePostPageView(rootStore: rootStore, showCreatePostPage: $showCreatePostPage)
+            }
+
+            if selectedPost != nil {
+                ViewPostPageView(post: $selectedPost)
             }
 
         }.edgesIgnoringSafeArea(.all)
@@ -85,6 +90,6 @@ struct MainPageView: View {
 
 struct MainPageView_Previews: PreviewProvider {
     static var previews: some View {
-        MainPageView(rootStore: RootStore())
+        MainPageView().environmentObject(RootStore())
     }
 }

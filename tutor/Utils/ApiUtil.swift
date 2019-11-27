@@ -41,6 +41,8 @@ class ApiUtil {
                     do {
                         let jsonData = try JSONDecoder().decode(type, from: data)
 
+                        print(jsonData)
+
                         DispatchQueue.main.async {
                             callback.onSuccess(jsonData)
                         }

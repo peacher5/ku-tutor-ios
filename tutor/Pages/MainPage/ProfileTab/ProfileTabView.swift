@@ -34,6 +34,7 @@ struct ProfileTabView: SwiftUI.View {
                             VStack {
                                 Text("KU 77")
                                     .font(.headline)
+                                    .frame(width: 50, height: 20)
                                     .padding(.horizontal)
                                     .padding(.vertical, 4)
                             }

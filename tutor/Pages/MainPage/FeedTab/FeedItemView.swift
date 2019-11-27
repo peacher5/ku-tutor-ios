@@ -7,28 +7,27 @@
 //
 
 import SwiftUI
-import URLImage
 import Kingfisher
 
 struct FeedItemView: SwiftUI.View {
-    var title: String
-    var description: String
+    @Binding var selectedPost: Post?
+    var post: Post
 
     var body: some SwiftUI.View {
         VStack (alignment: .leading) {
 
-            KFImage(URL(string: "https://picsum.photos/440/200")!)
+            KFImage(URL(string: post.coverPictureUrl) ?? URL(string: ""))
                 .resizable()
                 .background(Color.black.opacity(0.05))
                 .frame(maxWidth: .infinity, minHeight: 120.0, maxHeight: 120)
-            
-            Text(title)
+
+            Text(post.title)
                 .padding(.horizontal)
                 .padding(.top, 4)
                 .font(.headline)
                 .lineLimit(2)
 
-            Text(description)
+            Text(post.description)
                 .padding([.bottom, .horizontal])
                 .padding(.top, 10)
                 .font(.subheadline)
@@ -41,13 +40,17 @@ struct FeedItemView: SwiftUI.View {
             .shadow(color: Color.black.opacity(0.3), radius: 3, y: 2)
             .onTapGesture {
                 print("Tap")
-        }
+                withAnimation {
+                    self.selectedPost = self.post
+                }
+            }
+            .padding(.bottom, post.last! ? 140 : 0)
     }
 }
 
 struct FeedItemView_Previews: PreviewProvider {
     static var previews: some SwiftUI.View {
-        FeedItemView(title: "ติว Python By P'Tui", description: "ไม่มีคำอธิบาย")
-    
+        FeedItemView(selectedPost: .constant(Post(id: "", title: "", description: "", content: "", coverPictureUrl: "", user: User(email: "", firstName: "", lastName: "", nickname: "", studentId: "", campus: "", faculty: "", department: "", pictureUrl: "", aboutMe: ""), last: false)), post: Post(id: "", title: "", description: "", content: "", coverPictureUrl: "", user: User(email: "", firstName: "", lastName: "", nickname: "", studentId: "", campus: "", faculty: "", department: "", pictureUrl: "", aboutMe: ""), last: false))
+
     }
 }

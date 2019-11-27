@@ -40,4 +40,19 @@ class TutorApi {
     static func createProfile(profile: [String: Any], token: String, callback: ResponseCallback<Void>) {
         ApiUtil.postJSON(url: baseUrl + "/user/create", headers: ["X-Token": token], jsonBody: profile, callback: callback)
     }
+
+    static func fetchPostList(token: String, callback: ResponseCallback<Array<Post>>) {
+        ApiUtil.fetchJSON(url: baseUrl + "/posts", headers: ["X-Token": token], type: Array<Post>.self, callback: callback)
+    }
+
+    static func createPost(post: Post, token: String, callback: ResponseCallback<Void>) {
+        let jsonBody: [String: Any] = [
+            "title": post.title,
+            "description": post.description,
+            "content": post.content,
+            "coverPictureUrl": post.coverPictureUrl
+        ]
+
+        ApiUtil.postJSON(url: baseUrl + "/posts", headers: ["X-Token": token], jsonBody: jsonBody, callback: callback)
+    }
 }
